@@ -105,6 +105,7 @@ select *, cast(time_of_post as date) as date
                else 3 end size_category
         ,round(latitude,0) AS lat_group
         ,round(longitude,0) AS lon_group
+        ,ntile(10) over (order by number_of_tradies) as tradie_decile
        
 from Jobs
 where number_of_impressions  is not null   
